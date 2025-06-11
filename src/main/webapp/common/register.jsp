@@ -1,7 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-
-<body>
-<%@ include file="../header.jsp" %>
 <%
   String successo = (String) request.getAttribute("successo");
   String errore = (String) request.getAttribute("errore");
@@ -14,6 +11,7 @@
 
 
 <body>
+<%@ include file="../header.jsp" %>
 <main>
 <div class="form-container">
   <h2>Registrati</h2>
@@ -38,7 +36,7 @@
     <label>Password
       <input type="password" name="password" required>
     </label>
-    <button type="submit" class="btn-acquista">Registrati</button>
+    <button type="submit" class="btn-form">Registrati</button>
   </form>
   <p>Hai già un account? <a href="login.jsp">Login</a></p>
 </div>

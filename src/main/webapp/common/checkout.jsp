@@ -4,20 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
-
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 </head>
 <body>
 <%@ include file="../header.jsp" %>
 <%
-if (utente == null) {
-    response.sendRedirect(request.getContextPath() + "/common/login.jsp");
-    return;
+  if (utente == null) {
+      response.sendRedirect(request.getContextPath() + "/common/login.jsp");
+      return;
   }
 %>
 <main>
-  <div class="container form-container">
+  <div class="form-container">
     <h2>Conferma ordine</h2>
     <% String errore = (String) request.getAttribute("errore"); %>
     <% if (errore != null) { %>
@@ -40,7 +39,7 @@ if (utente == null) {
         <input type="text" name="citta" required>
       </label>
 
-      <h4>Dati pagamento (fake)</h4>
+      <h4>Dati pagamento:</h4>
       <label>Numero carta:
         <input type="text" name="numeroCarta" required maxlength="16">
       </label>
@@ -52,7 +51,6 @@ if (utente == null) {
     </form>
   </div>
 </main>
-
 <%@ include file="../footer.jsp" %>
 <script>
   const contextPath = '<%=request.getContextPath()%>';
@@ -60,4 +58,3 @@ if (utente == null) {
 <script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
 </body>
 </html>
-

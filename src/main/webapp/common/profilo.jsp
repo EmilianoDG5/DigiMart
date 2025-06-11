@@ -1,14 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="model.Utente" %>
-<%@ include file="../header.jsp" %>
-<%
-  if (utente == null) {
-    response.sendRedirect(request.getContextPath() + "/common/login.jsp");
-    return;
-  }
-  String successo = (String)request.getAttribute("successo");
-  String errore = (String)request.getAttribute("errore");
-%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +13,15 @@
 <script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
 </head>
 <body>
+<%@ include file="../header.jsp" %>
+<%
+  if (utente == null) {
+    response.sendRedirect(request.getContextPath() + "/common/login.jsp");
+    return;
+  }
+  String successo = (String)request.getAttribute("successo");
+  String errore = (String)request.getAttribute("errore");
+%>
 <main>
   <div class="container small-form" style="max-width:430px;">
     <h2>Profilo utente</h2>

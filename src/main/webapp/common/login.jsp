@@ -4,7 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
-
+<script>
+  const contextPath = '<%= request.getContextPath() %>';
+</script>
+<script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
 </head>
 <body>
 
@@ -16,22 +19,17 @@
   <% if (errore != null) { %>
     <div class="errore"><%= errore %></div>
   <% } %>
-  <form id="form-login" action="<%= request.getContextPath() %>/login" method="post" class="form-styled">
-    <label>Email
-      <input type="text" name="mail" required>
-    </label>
-    <label>Password
-      <input type="password" name="password" required>
-    </label>
-    <button type="submit" class="btn-acquista">Accedi</button>
-  </form>
+ <form id="form-login" action="<%= request.getContextPath() %>/login" method="post" class="form-styled">
+  <label for="email">Email</label>
+  <input type="text" name="mail" id="email" required>
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" required>
+  <button type="submit" class="btn-form">Accedi</button>
+</form>
   <p>Non hai un account? <a href="register.jsp">Registrati</a></p>
 </div>
 </main>
 <%@ include file="../footer.jsp" %>
-<script>
-  const contextPath = '<%= request.getContextPath() %>';
-</script>
-<script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
+
 </body>
 </html>

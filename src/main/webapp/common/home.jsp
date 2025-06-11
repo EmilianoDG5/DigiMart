@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="../header.jsp" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Prodotto" %>
 <%
@@ -11,9 +10,22 @@
   }
   String errore = (String) request.getAttribute("errore");
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+<Title>HOME JSP</Title>
+</head>
 <body> 
+<%@ include file="../header.jsp" %>
 <main>
   <div class="container">
+  <div class="slogan-banner">
+  <span class="slogan-title">DIGIMART</span>
+  <span class="slogan-desc">Il tuo e-commerce di prodotti digitali</span>
+</div>
+  
     <h2 class="page-title">Prodotti in evidenza</h2>
     <% if (errore != null) { %>
       <div class="errore"><%= errore %></div>
@@ -22,7 +34,7 @@
       <% if (prodotti != null && !prodotti.isEmpty()) {
         for (Prodotto p : prodotti) { %>
         <!-- Card interamente cliccabile (escluso bottone) -->
-        <a href="<%= request.getContextPath() %>/dettaglioprodotto?id=<%= p.getId() %>" class="product-link" style="text-decoration:none; color:inherit;">
+        <a href="<%= request.getContextPath() %>/dettaglioprodotto?id=<%= p.getId() %>" class="product-link" >
           <div class="product-card" tabindex="0" style="cursor:pointer; position:relative;">
             <img src="<%= request.getContextPath() %>/images/<%= p.getFoto() != null ? p.getFoto() : "placeholder.png" %>" alt="img" class="product-img">
             <div class="product-info">
@@ -47,9 +59,9 @@
 </main>
 
 <%@ include file="../footer.jsp" %>
-</body>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 <script>
   const contextPath = '<%= request.getContextPath() %>';
 </script>
 <script src="<%= request.getContextPath() %>/scripts/carrello.js"></script>
+</body>
+

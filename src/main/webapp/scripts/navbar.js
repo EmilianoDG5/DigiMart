@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // Chiudi se clicchi fuori dal menu (opzionale, UX migliore)
+    // Chiudi se clicchi fuori dal menu (UX migliore)
     document.addEventListener('click', function(e) {
       if (navLinks.classList.contains('open') &&
          !navLinks.contains(e.target) &&

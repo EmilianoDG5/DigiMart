@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="../header.jsp" %>
 <%@ page import="model.Prodotto" %>
 <%
   Prodotto p = (Prodotto) request.getAttribute("prodotto");
@@ -11,6 +10,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 <main>
   <div class="container" style="padding: 40px 35px 38px 35px;">
     <% if (p != null) { %>

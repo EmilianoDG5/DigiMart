@@ -19,7 +19,7 @@
     <!-- Barra di ricerca solo desktop -->
     <form class="search-bar desktop-search" action="<%= request.getContextPath() %>/prodotti" method="get">
       <input type="text" name="search" placeholder="Cerca prodotti..." aria-label="Cerca prodotti">
-      <button type="submit" class="material-symbols-outlined" style="font-size:20px;background:transparent;border:none;">search</button>
+      <button type="submit" class="material-symbols-outlined search-btn">search</button>
     </form>
 
     <!-- Hamburger solo mobile -->
@@ -31,7 +31,7 @@
       <li class="search-li">
         <form class="search-bar" action="<%= request.getContextPath() %>/prodotti" method="get">
           <input type="text" name="search" placeholder="Cerca prodotti..." aria-label="Cerca prodotti">
-          <button type="submit" class="material-symbols-outlined" style="font-size:20px;background:transparent;border:none;">search</button>
+          <button type="submit" class="material-symbols-outlined search-btn">search</button>
         </form>
       </li>
       <li><a href="<%= request.getContextPath() %>/prodotti?categoria=Computer">Computer</a></li>
@@ -95,16 +95,4 @@
     </ul>
   </div>
 </nav>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks = document.getElementById('navLinks');
-  menuToggle.addEventListener('click', function () {
-    navLinks.classList.toggle('open');
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-});
-</script>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+<script src="<%= request.getContextPath() %>/scripts/navbar.js"></script>

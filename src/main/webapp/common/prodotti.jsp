@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
-<%@ include file="../header.jsp" %>
+
 <%@ page import="java.util.List" %>
 <%@ page import="model.Prodotto" %>
 <%
@@ -17,6 +17,7 @@
 
 </head>
 <body> 
+<%@ include file="../header.jsp" %>
 <main>
   <div class="container">
     <h2 class="page-title">

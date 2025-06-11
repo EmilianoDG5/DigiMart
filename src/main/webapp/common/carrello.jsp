@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
-
 </head>
 <body>
 <%@ include file="../header.jsp" %>

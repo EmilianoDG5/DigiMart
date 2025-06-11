@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="../header.jsp" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Ordine" %>
 <%
@@ -13,6 +12,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 <main>
   <div class="container">
     <h2>I tuoi ordini</h2>
