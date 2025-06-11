@@ -6,6 +6,14 @@
   String successo = (String) request.getAttribute("successo");
   String errore = (String) request.getAttribute("errore");
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+
+
+<body>
 <main>
 <div class="form-container">
   <h2>Registrati</h2>
@@ -25,7 +33,7 @@
       <input type="text" name="cognome" required>
     </label>
     <label>Email
-      <input type="email" name="mail" required>
+      <input type="text" name="mail" required>
     </label>
     <label>Password
       <input type="password" name="password" required>
@@ -36,6 +44,10 @@
 </div>
 </main>
 <%@ include file="../footer.jsp" %>
-</body>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+<script>
+  const contextPath = '<%= request.getContextPath() %>';
+</script>
 <script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
+</body>
+</html>
+

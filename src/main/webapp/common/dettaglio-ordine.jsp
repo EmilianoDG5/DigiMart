@@ -6,6 +6,13 @@
   List<DettaglioOrdine> dettagli = (List<DettaglioOrdine>) request.getAttribute("dettagli");
   String errore = (String) request.getAttribute("errore");
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+</head>
+<body>
 <main>
   <div class="container">
     <h2>Dettaglio ordine</h2>
@@ -41,4 +48,5 @@
   </div>
 </main>
 <%@ include file="../footer.jsp" %>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+</body>
+</html>

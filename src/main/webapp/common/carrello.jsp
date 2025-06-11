@@ -1,4 +1,13 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+
+</head>
 <body>
 <%@ include file="../header.jsp" %>
 <main>
@@ -16,9 +25,9 @@
   </div>
 </main>
 <%@ include file="../footer.jsp" %>
-</body>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 <script>
   const contextPath = '<%=request.getContextPath()%>';
 </script>
 <script src="<%= request.getContextPath() %>/scripts/carrello.js"></script>
+</body>
+</html>

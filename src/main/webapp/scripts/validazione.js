@@ -4,7 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
   var regCAP = /^[0-9]{5}$/;
   var regCVV = /^[0-9]{3,4}$/;
   var regCarta = /^[0-9]{16}$/;
-
+  //validazione login
+  var formLogin = document.getElementById("form-login");
+  if (formLogin) {
+    formLogin.addEventListener("submit", function (e) {
+      var email = formLogin.mail.value.trim();
+      if (!regEmail.test(email)) {
+        mostraErrore(formLogin, "Email non valida.");
+        e.preventDefault();
+      }
+    });
+  }
   // Validazione registrazione
   var reg = document.getElementById("form-register");
   if (reg) {

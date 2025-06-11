@@ -1,6 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 
+</head>
 <body>
+
 <%@ include file="../header.jsp" %>
 <main>
 <div class="form-container">
@@ -9,9 +16,9 @@
   <% if (errore != null) { %>
     <div class="errore"><%= errore %></div>
   <% } %>
-  <form action="<%= request.getContextPath() %>/login" method="post" class="form-styled">
+  <form id="form-login" action="<%= request.getContextPath() %>/login" method="post" class="form-styled">
     <label>Email
-      <input type="email" name="mail" required>
+      <input type="text" name="mail" required>
     </label>
     <label>Password
       <input type="password" name="password" required>
@@ -22,8 +29,9 @@
 </div>
 </main>
 <%@ include file="../footer.jsp" %>
-
-</body>
-
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+<script>
+  const contextPath = '<%= request.getContextPath() %>';
+</script>
 <script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
+</body>
+</html>

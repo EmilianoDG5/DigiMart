@@ -9,6 +9,17 @@
   String successo = (String)request.getAttribute("successo");
   String errore = (String)request.getAttribute("errore");
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+<script>
+  const contextPath = '<%= request.getContextPath() %>';
+</script>
+<script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
+</head>
+<body>
 <main>
   <div class="container small-form" style="max-width:430px;">
     <h2>Profilo utente</h2>
@@ -36,5 +47,5 @@
   </div>
 </main>
 <%@ include file="../footer.jsp" %>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
-<script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
+</body>
+</html>

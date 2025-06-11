@@ -93,6 +93,7 @@ body > footer {
   margin-right: 24px;
   margin-top: 10px;
   box-shadow: 0 1px 6px #0001;
+
 }
 
 .search-bar input[type="text"] {
@@ -120,19 +121,24 @@ body > footer {
   font-size: 1em;
   opacity: 1;
 }
+.search-bar.desktop-search{
+margin-top:16px;
+}
 
 /* Links e ricerca (desktop) */
 .nav-links {
   display: flex;
-  align-items: center;
+  
+  align-items:flex-start;;
   list-style: none;
-  gap: 1.3rem;
+  gap: 7px;
   margin: 0;
   padding: 0;
   position: static;
   background: transparent;
   box-shadow: none;
 }
+
 
 .nav-links li {
   position: relative;
@@ -338,14 +344,7 @@ body > footer {
 
 
 /* =========== CONTAINER & SEZIONI =========== */
-.container {
-  max-width: 920px;
-  margin: 30px auto 24px auto;
-  padding: 26px 16px 24px 16px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 14px #1fa1c826;
-}
+
 h2, h3, h4 {
   color: #1FA1C8;
   margin-top: 0;
@@ -565,6 +564,32 @@ footer {
   font-size: 1em;
   margin: 0;
 }
+@media (max-width: 520px) {
+  .form-container {
+    padding: 10px 2vw 18px 2vw !important;
+    max-width: 99vw !important;
+    margin: 20px auto 18px auto;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  .form-styled input[type="text"],
+  .form-styled input[type="password"],
+  .form-styled input[type="email"] {
+    font-size: 1em;
+    padding: 9px 8px;
+  }
+  .form-styled button {
+    font-size: 1em;
+    padding: 10px 0;
+  }
+  .container {
+    padding: 4px 1vw !important;
+    max-width: 99vw !important;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+}
+
 
 
 /* =========== ADMIN =========== */
@@ -617,9 +642,7 @@ footer {
   width: 100%;
   overflow-x: auto;
 }
-.table-ordini {
-  min-width: 1000px;
-}
+
 
 .container {
   max-width: 1200px; /* o anche 1300px */
@@ -936,6 +959,12 @@ footer {
   gap: 22px;
   margin-top: 20px;
 }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* massimo 4 card */
+  gap: 22px;
+  margin-top: 20px;
+}
 .product-card {
   display: flex;
   flex-direction: column;
@@ -980,24 +1009,47 @@ footer {
 .product-info h3 {
   font-size: 1.1em;
   margin-bottom: 5px;
-  min-height: 44px; /* ← riserva spazio fisso per il titolo */
+  min-height: 56px;
+  max-height: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
 }
+
 
 
 .product-info .desc {
   color: #555a;
   font-size: .98em;
   margin: 4px 0 2px 0;
+  
 }
 .product-info .categoria {
   font-size: 0.9em;
   color: #1487b6;
   margin-bottom: 5px;
+  min-height: 20px;
+  max-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 .product-info .prezzo {
   font-size: 1em;
   color: #222;
   margin-bottom: 10px;
+   min-height: 24px;
+  max-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .add-cart-form {
@@ -1005,6 +1057,7 @@ footer {
   display: flex;
   justify-content: center;
   width: 100%;
+
 }
 
 .prezzo {
@@ -1055,6 +1108,7 @@ footer {
 	text-decoration:none; 
 	color:inheri
 }
+
 /* =========== TABELLE ORDINI/PRODOTTI =========== */
 .carrello-box {
   width: 90%;
@@ -1071,6 +1125,8 @@ footer {
   border-collapse: collapse;
   margin-top: 18px;
   font-size: 1em;
+    border-radius: 12px 12px 0 0;
+  overflow: hidden;
 }
 .table-ordini th, .table-ordini td {
   border: 1px solid #e0e0e0;
@@ -1089,6 +1145,67 @@ footer {
   border-radius: 7px;
 }
 
+@media (max-width: 600px) {
+  .table-ordini,
+  .table-ordini thead,
+  .table-ordini tbody,
+  .table-ordini th,
+  .table-ordini td,
+  .table-ordini tr {
+    display: block;
+    width: 100%;
+  }
+  .table-ordini thead { display: none; }
+  .table-ordini tr {
+    margin-bottom: 15px;
+    background: #f8fdff;
+    box-shadow: 0 1px 6px #b9e7fa66;
+    border-radius: 11px;
+    padding: 7px 0 5px 0;
+    border: 1px solid #e3f3fa;
+  }
+  .table-ordini td {
+    text-align: left;
+    padding: 7px 14px 7px 14px;
+    border-bottom: none;
+    border-right: none;
+    max-width: 99vw;
+    font-size: 1em;
+    background: transparent;
+    margin-bottom: 0;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .table-ordini td:before {
+    content: attr(data-label) ": ";
+    font-weight: bold;
+    color: #1FA1C8;
+    display: inline;
+    margin-right: 8px;
+    font-size: 1em;
+  }
+  .table-ordini td[data-label="Dettagli"] {
+    text-align: center;
+  }
+  .btn-orders {
+    display: inline-block;
+    font-size: 1em;
+    padding: 7px 16px;
+    background: #1FA1C8;
+    color: #fff !important;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none !important;
+    text-align: center;
+    margin: 3px 0;
+    font-weight: 500;
+    box-shadow: 0 2px 6px #b9e7fa33;
+    transition: background .2s;
+  }
+  .btn-orders:hover {
+    background: #1378a7;
+  }
+}
 
 /* =========== CARRELLO STILE MEDIO & RESPONSIVE =========== */
 
@@ -1100,7 +1217,7 @@ footer {
   border-radius: 16px;
   padding: 22px 14px 18px 14px;
   box-shadow: 0 0 16px rgba(0, 90, 120, 0.07);
-  overflow-x: auto;
+  
 }
 
 #carrello-dettagli {
@@ -1112,12 +1229,12 @@ footer {
   box-shadow: 0 2px 8px #1fa1c814;
   margin-bottom: 14px;
   transition: box-shadow .13s;
-  overflow-x: auto;
+  
 }
 
 #carrello-dettagli table {
-  width: 100%;
-  min-width: 580px;
+    width: 100%;
+  min-width: 0;
   border-collapse: collapse;
   font-size: 1.06em;
   border-radius: 8px;
@@ -1210,7 +1327,16 @@ footer {
   text-align: right;
   padding: 15px 12px 10px 12px;
 }
-
+.totale-carrello-box {
+  margin: 10px 0 0 0;
+  padding: 12px 18px;
+  background: #e8f8fa;
+  color: #117799;
+  font-size: 1.18em;
+  border-radius: 12px;
+  font-weight: bold;
+  text-align: right;
+}
 #checkout-div {
   text-align: right;
   margin-top: 18px;
@@ -1234,11 +1360,24 @@ footer {
     max-width: 105px;
   }
   #carrello-dettagli table {
-    min-width: 340px;
-    font-size: .98em;
+     min-width: 0;
+    font-size: 0.98em;
   }
 }
-
+@media (max-width: 600px) {
+  .totale-carrello-box {
+    text-align: left;
+    font-size: 1.09em;
+   margin-top: 4px;
+    padding: 7px 5px;
+    border-radius: 10px;
+  }
+  #carrello-dettagli{
+  
+  padding-bottom: 6px;
+  
+  }
+}
 @media (max-width: 500px) {
   #carrello-dettagli table,
   #carrello-dettagli thead,
@@ -1300,29 +1439,28 @@ footer {
 
 
 
-/* --- Dettaglio prodotto - layout desktop --- */
+/* =========== DETTAGLIO PRODTTO =========== */
+
+/* Dettaglio prodotto - layout desktop */
 .product-detail-box {
   display: flex;
-  gap: 38px;
+  gap: 40px; /* era 38px, ora 40px come inline */
   align-items: flex-start;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 14px #1fa1c82a;
-  padding: 36px 40px;
-  margin: 24px auto 0 auto;
-  max-width: 980px;
+  background: none; /* override solo per questa box */
+  box-shadow: none;
+  padding: 0;
 }
 
 .product-detail-imgbox {
-  background: #f8fdff;
-  border-radius: 18px;
-  padding: 12px 14px;
-  box-shadow: 0 1px 8px #e0f6ffcc;
+  padding: 0;
   min-width: 310px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: none;
+  box-shadow: none;
 }
+
 .product-img-detail {
   max-width: 290px;
   max-height: 330px;
@@ -1330,85 +1468,54 @@ footer {
   object-fit: contain;
   box-shadow: 0 1px 8px #bfe4f96b;
 }
+
 .product-detail-info {
   flex: 1;
+  min-width: 300px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  min-width: 300px;
-  padding: 10px 0 0 0;
-}
-.product-img-detail {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 13px;
-  box-shadow: 0 2px 10px #1fa1c810;
-  object-fit: contain;
-  background: #f5fafd;
 }
 
 .product-detail-title {
   color: #1fa1c8;
-  font-size: 1.6em;
-  margin: 0 0 20px 0;
-  font-weight: 700;
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 0.4em;
 }
+
 .product-detail-category {
-  font-weight: 500;
-  color: #1487b6;
-  font-size: 1.08em;
+  margin-bottom: 12px;
+  color: #1fa1c8;
+  font-weight: 600;
 }
-.product-detail-category span {
-  color: #222;
-  font-weight: bold;
-  margin-right: 3px;
-}
+
 .product-detail-desc {
-  font-size: 1.05em;
-  color: #3a3a3a;
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-.product-detail-row {
-  margin-bottom: 14px;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-detail-label {
-  font-weight: bold;
-  color: #1487b6;
-  margin-bottom: 3px;
-  font-size: 1.08em;
-}
-
-.product-detail-value {
-  color: #222;
-  font-size: 1.05em;
-  margin-left: 1px;
+  margin-bottom: 20px;
+    color: #1fa1c8;
 }
 
 .product-detail-price {
-  color: #1fa1c8;
-  font-size: 1.4em;
+  font-size: 1.6em;
+  color: #222;
   font-weight: bold;
-  margin: 14px 0 22px 0;
+  margin-bottom: 28px;
 }
 
 .add-cart-form {
-  margin-top: 8px;
+  margin-top: 0;
 }
+
 .btn-add-cart-d {
   background: #1FA1C8;
   color: #fff;
   border: none;
   border-radius: 10px;
-  padding: 16px 38px;  /* Più grande */
+  padding: 16px 38px;
   font-weight: bold;
-  font-size: 1.22em;   /* Font più grande */
+  font-size: 1.22em;
   cursor: pointer;
-  margin-top: 22px;
+  margin-top: 0;
   box-shadow: 0 2px 10px #1fa1c820;
   transition: background .15s, box-shadow .13s;
   letter-spacing: 0.02em;
@@ -1417,6 +1524,23 @@ footer {
   background: #146484;
   box-shadow: 0 4px 18px #1fa1c838;
 }
+.product-detail-label {
+  color: #1fa1c8;
+  font-weight: 600;
+  font-size: 1.08em;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+.product-detail-value {
+  color: #222; /* nero quasi pieno */
+  font-weight: 400;
+  font-size: 1.08em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+
 /* --- Responsive per mobile --- */
 @media (max-width: 800px) {
   .product-detail-box {
@@ -1437,9 +1561,7 @@ footer {
 
 /* =========== RESPONSIVE =========== */
 @media (max-width: 700px) {
-  .navbar { flex-direction: column; gap: 10px; align-items: flex-start; }
-  .nav-links { gap: 7px; flex-direction: column; align-items: flex-start;}
-  .search-bar { width: 100%; margin: 0 0 0 0;}
+  
   .container { padding: 7px; }
   .product-grid { grid-template-columns: 1fr; }
   .admin-form { flex-direction: column; gap: 10px; }
