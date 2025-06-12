@@ -18,7 +18,9 @@
     <!-- Form inserimento nuovo prodotto -->
     <form action="<%= request.getContextPath() %>/admin/prodotto" method="post" enctype="multipart/form-data" class="admin-form">
       <input type="hidden" name="azione" value="inserisci">
-      <label>Nome: <input type="text" name="nome" required></label>
+      <label>Nome:
+       <textarea name="nome" class="nome-area" rows="3"required></textarea>
+      </label>
       <label>Descrizione:
         <textarea name="descrizione" class="desc-area" rows="3" required></textarea>
       </label>
@@ -38,7 +40,7 @@
     <hr>
     <h3>Elenco Prodotti</h3>
     <div class="table-responsive">
-   <table class="table-ordini">
+   <table class=" table-prodotti-admin">
   <thead>
     <tr>
       <th>Nome</th>
@@ -58,7 +60,10 @@
       <form action="<%= request.getContextPath() %>/admin/prodotto" method="post" enctype="multipart/form-data" style="display:contents;">
         <input type="hidden" name="azione" value="modifica">
         <input type="hidden" name="id" value="<%= p.getId() %>">
-        <td><input type="text" name="nome" value="<%= p.getNome() %>" required></td>
+        <td>
+        <textarea name="nome"class="nome-area" rows="2" required><%= p.getNome() %></textarea>
+        
+        </td>
         <td>
           <textarea name="descrizione" class="desc-area" rows="2" required><%= p.getDescrizione() %></textarea>
         </td>

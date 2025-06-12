@@ -46,14 +46,14 @@
           if (i != dettagli.size() - 1) prodottiTxt += ", ";
         }
     %>
-    <tr>
-      <td><%= o.getNumeroOrdine() %></td>
-      <td><%= o.getNomeUtente() %></td>
-      <td><%= o.getData() %></td>
-      <td><%= prodottiTxt %></td>
-      <td>€ <%= o.getTotale() %></td>
-      <td><%= o.getVia() %>, <%= o.getCap() %> <%= o.getCitta() %></td>
-    </tr>
+   <tr>
+  <td data-label="Numero"><%= o.getNumeroOrdine() %></td>
+  <td data-label="Cliente"><%= o.getNomeUtente() %></td>
+  <td data-label="Data"><%= o.getData() %></td>
+  <td data-label="Prodotti"><%= prodottiTxt %></td>
+  <td data-label="Totale">€ <%= o.getTotale() %></td>
+  <td data-label="Indirizzo"><%= o.getVia() %>, <%= o.getCap() %> <%= o.getCitta() %></td>
+</tr>
     <% } %>
   </tbody>
 </table>
