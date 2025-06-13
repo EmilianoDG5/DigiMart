@@ -30,12 +30,12 @@ public class FiltroAutenticazione implements Filter {
             && !path.endsWith("/login.jsp")
             && !path.endsWith("/dologin")
             && !loggedAdmin) {
-            response.sendRedirect(request.getContextPath() + "/admin/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/prodotti");
             return;
         }
         // Pagine utente comuni che richiedono login
         if (path.contains("/common/") &&
-                (path.contains("checkout") || path.contains("mieiordini") || path.contains("dettaglioordine"))) {
+                (path.contains("checkout") || path.contains("ordini") || path.contains("dettaglioordine")|| path.contains("dettaglio-ordine")|| path.contains("profilo"))) {
             if (!loggedUser) {
                 response.sendRedirect(request.getContextPath() + "/common/login.jsp");
                 return;

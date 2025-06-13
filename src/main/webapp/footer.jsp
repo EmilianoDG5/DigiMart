@@ -3,6 +3,6 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 
   <div class="footer-content">
-    <p>&copy; 2025 DigiMart - E-commerce di prodotti digitali. Powered by Java Servlet/JSP.</p>
+    <p>&copy; 2025 DigiMart - E-commerce di prodotti digitali.</p>
   </div>
 </footer>
