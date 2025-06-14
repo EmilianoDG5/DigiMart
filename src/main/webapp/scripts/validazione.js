@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var regCAP = /^[0-9]{5}$/;
   var regCVV = /^[0-9]{3,4}$/;
   var regCarta = /^[0-9]{16}$/;
+  var regNome = /^[A-Za-zÀ-ÖØ-öø-ÿ'’\s]+$/;
+
   
   var formLogin = document.getElementById("form-login");
   if (formLogin) {
@@ -15,18 +17,56 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  // Validazione registrazione
-  var reg = document.getElementById("form-register");
-  if (reg) {
-    reg.addEventListener("submit", function (e) {
-      var email = reg.mail.value.trim();
-      var pw = reg.password.value;
+  //validazione registrazione
+  var formRegister = document.getElementById("form-register");
+  if (formRegister) {
+    formRegister.addEventListener("submit", function (e) {
+      var email = formRegister.mail.value.trim();
+      var pw = formRegister.password.value;
+      var nome = formRegister.nome.value.trim();
+      var cognome = formRegister.cognome.value.trim();
+
       if (!regEmail.test(email)) {
-        mostraErrore(reg, "Email non valida.");
+        mostraErrore(formRegister, "Email non valida.");
         e.preventDefault();
       }
       if (pw.length < 6) {
-        mostraErrore(reg, "Password troppo corta.");
+        mostraErrore(formRegister, "Password troppo corta.");
+        e.preventDefault();
+      }
+      if (!regNome.test(nome)) {
+        mostraErrore(formRegister, "Il nome può contenere solo lettere.");
+        e.preventDefault();
+      }
+      if (!regNome.test(cognome)) {
+        mostraErrore(formRegister, "Il cognome può contenere solo lettere.");
+        e.preventDefault();
+      }
+    });
+  }
+  // Validazione profilo
+  var regProfilo = document.getElementById("profilo-form");
+  if (regProfilo) {
+    regProfilo.addEventListener("submit", function (e) {
+      var email = regProfilo.mail.value.trim();
+      var pw = regProfilo.password.value;
+      var nome = regProfilo.nome.value.trim();
+      var cognome = regProfilo.cognome.value.trim();
+
+      if (!regEmail.test(email)) {
+        mostraErrore(regProfilo, "Email non valida.");
+        e.preventDefault();
+      }
+      if (pw.length < 6) {
+        mostraErrore(regProfilo, "Password troppo corta.");
+        e.preventDefault();
+      }
+      if (!regNome.test(nome)) {
+        mostraErrore(regProfilo, "Il nome può contenere solo lettere.");
+        e.preventDefault();
+      }
+      if (!regNome.test(cognome)) {
+        mostraErrore(regProfilo, "Il cognome può contenere solo lettere.");
         e.preventDefault();
       }
     });
@@ -55,7 +95,22 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
       }
     });
+	
+	
   }
+  
+  //visione password
+      const toggle = document.getElementById("togglePassword");
+      const passwordField = document.getElementById("password");
+
+      if (toggle && passwordField) {
+        toggle.addEventListener("click", function () {
+          const isHidden = passwordField.type === "password";
+          passwordField.type = isHidden ? "text" : "password";
+          toggle.textContent = isHidden ? "visibility_off" : "visibility";
+        });
+      }
+   
 });
 
 function mostraErrore(form, msg) {

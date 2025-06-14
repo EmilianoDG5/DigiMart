@@ -41,9 +41,13 @@
       <label>Email
         <input type="email" name="mail" value="<%=utente.getMail()%>" required>
       </label>
-      <label>Nuova password
-        <input type="password" name="password" placeholder="Lascia vuoto per non cambiare">
-      </label>
+        <label>Password
+	  <div class="password-wrapper">
+	    <input type="password" name="password" id="password" placeholder="Lascia vuoto per non cambiare" >
+	    <span id="togglePassword" class="material-symbols-outlined toggle-password"  title="Mostra/Nascondi password"  >
+	      visibility
+	    </span>
+	  </div>
       <button type="submit" class="btn-acquista" style="margin-top:18px;">Aggiorna dati</button>
     </form>
   </div>
