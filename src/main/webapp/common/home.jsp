@@ -45,8 +45,14 @@
               <form class="add-cart-form" action="<%= request.getContextPath() %>/carrello" method="post" onClick="event.stopPropagation();">
                 <input type="hidden" name="azione" value="aggiungi">
                 <input type="hidden" name="idProdotto" value="<%= p.getId() %>">
-                <button type="submit" class="btn-add-cart">Aggiungi al carrello</button>
+               <button type="submit" class="btn-add-cart"
+			    <%= (p.getDisponibilita() == 0 ? "disabled style='opacity:0.6;cursor:not-allowed;'" : "") %>>
+			    Aggiungi al carrello
+			</button>
               </form>
+              <p class="<%= (p.getDisponibilita() == 0 ? "disponbilità esaurito" : "disponbilità") %>">
+			 <%= (p.getDisponibilita() == 0 ? "Prodotto esaurito" : "Disponibilità: " + p.getDisponibilita() + " pz") %>
+			</p>
             </div>
           </div>
         </a>

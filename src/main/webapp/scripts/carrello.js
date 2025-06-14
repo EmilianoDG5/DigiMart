@@ -31,7 +31,7 @@ function aggiornaCarrello() {
 		      ${p.nome}
 		    </td>
 		    <td data-label="Quantità">
-		      <input type="number" min="1" max="99" value="${p.quantita}" style="width:50px"
+		      <input type="number" min="1" max="${p.disponibilita}" value="${p.quantita}" style="width:50px"
 		        onchange="modificaQuantita(${p.id}, this.value)">
 		    </td>
 		    <td data-label="Prezzo">€ ${(p.subtotale).toFixed(2)}</td>

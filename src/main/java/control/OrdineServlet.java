@@ -11,14 +11,10 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import java.sql.SQLException;
 
-/**
- * Servlet per gestione creazione ordine (checkout).
- */
 @WebServlet("/ordine")
 public class OrdineServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Util per validare campi sensibili lato server
     private boolean validaCampi(String via, String cap, String citta, String numCarta, String cvv) {
         if (via == null || cap == null || citta == null || numCarta == null || cvv == null)
             return false;
@@ -37,6 +33,7 @@ public class OrdineServlet extends HttpServlet {
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
         Utente utente = (Utente) session.getAttribute("utente");
         if (utente == null) {
@@ -67,8 +64,8 @@ public class OrdineServlet extends HttpServlet {
         OrdineDAO odao = new OrdineDAO();
         double totale = 0;
         List<DettaglioOrdine> dettagli = new ArrayList<>();
+
         try {
-            // Ricalcola prezzi per sicurezza!
             for (Map.Entry<Integer, Integer> entry : carrello.entrySet()) {
                 Prodotto p = pdao.getProdottoById(entry.getKey());
                 if (p != null) {
@@ -81,6 +78,7 @@ public class OrdineServlet extends HttpServlet {
                     totale += p.getPrezzo() * entry.getValue();
                 }
             }
+
             // Crea ordine
             String numeroOrdine = "DM" + System.currentTimeMillis();
             Ordine ordine = new Ordine();
@@ -102,10 +100,19 @@ public class OrdineServlet extends HttpServlet {
                 d.setIdOrdine(idOrdine);
                 odao.inserisciDettaglioOrdine(d);
             }
-            // Svuota il carrello
+
+            // ✅ Aggiorna disponibilità dei prodotti
+            for (DettaglioOrdine d : dettagli) {
+                Prodotto prodotto = pdao.getProdottoById(d.getIdProdotto());
+                int nuovaDisp = prodotto.getDisponibilita() - d.getQuantita();
+                if (nuovaDisp < 0) nuovaDisp = 0;
+                pdao.doUpdateDisponibilita(d.getIdProdotto(), nuovaDisp);
+            }
+
             session.setAttribute("carrello", new HashMap<Integer, Integer>());
             request.setAttribute("successo", "ORDINE ANDATO A BUON FINE!");
             request.getRequestDispatcher("/common/ordine-success.jsp").forward(request, response);
+
         } catch (SQLException e) {
             request.setAttribute("errore", "Errore nell'inserimento ordine: " + e.getMessage());
             request.getRequestDispatcher("/common/checkout.jsp").forward(request, response);

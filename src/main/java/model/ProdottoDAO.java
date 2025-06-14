@@ -122,4 +122,16 @@ public class ProdottoDAO {
         return p;
     }
     
+
+    public void doUpdateDisponibilita(int id, int nuovaDisp) {
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("UPDATE prodotto SET Disponibilita = ? WHERE id = ?");
+            ps.setInt(1, nuovaDisp);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
