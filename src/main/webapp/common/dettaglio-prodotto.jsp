@@ -32,10 +32,16 @@
 		<div class="product-detail-price">
 		  € <%= String.format("%.2f", p.getPrezzo()) %>
 		</div>
+		 <h3 class="<%= (p.getDisponibilita() == 0 ? "disponbilità esaurito" : "disponbilità") %>">
+			 <%= (p.getDisponibilita() == 0 ? "Prodotto esaurito" : "Disponibilità: " + p.getDisponibilita() + " pz") %>
+			</h3>
 		<form action="<%= request.getContextPath() %>/carrello" method="post" class="add-cart-form">
 		  <input type="hidden" name="azione" value="aggiungi">
 		  <input type="hidden" name="idProdotto" value="<%= p.getId() %>">
-		  <button type="submit" class="btn-add-cart-d">Aggiungi al carrello</button>
+		  <button type="submit" class="btn-add-cart-d"
+		    <%= (p.getDisponibilita() == 0 ? "disabled style='opacity:0.6;cursor:not-allowed;'" : "") %>>
+		    Aggiungi al carrello
+		</button>
 		</form>
         </div>
       </div>

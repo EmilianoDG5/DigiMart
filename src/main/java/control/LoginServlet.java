@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("utente", u);
                 session.setAttribute("admin", null);
-                response.sendRedirect(request.getContextPath() + "/common/home.jsp");
+                response.sendRedirect(request.getContextPath() + "/prodotti");
             } else {
                 request.setAttribute("errore", "Credenziali non valide.");
                 request.getRequestDispatcher("/common/login.jsp").forward(request, response);
