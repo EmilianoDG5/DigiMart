@@ -9,10 +9,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-<script>
-  const contextPath = '<%= request.getContextPath() %>';
-</script>
-<script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
+
 </head>
 
 <body>
@@ -52,6 +49,10 @@
 </div>
 </main>
 <%@ include file="../footer.jsp" %>
+<script>
+  const contextPath = '<%= request.getContextPath() %>';
+</script>
+<script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
 </body>
 </html>
 

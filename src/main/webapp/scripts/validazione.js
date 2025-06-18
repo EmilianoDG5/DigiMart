@@ -1,4 +1,9 @@
-// Validazione lato client per form registrazione e ordine (email, password, CAP, carta, CVV, ecc)
+// Funzione per rimuovere errore live
+function rimuoviErrore(form) {
+  var err = form.querySelector(".errore-form");
+  if (err) err.remove();
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   var regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var regCAP = /^[0-9]{5}$/;
@@ -6,113 +11,166 @@ document.addEventListener("DOMContentLoaded", function () {
   var regCarta = /^[0-9]{16}$/;
   var regNome = /^[A-Za-zÀ-ÖØ-öø-ÿ'’\s]+$/;
 
-  
+  // --- Login ---
   var formLogin = document.getElementById("form-login");
   if (formLogin) {
-    formLogin.addEventListener("submit", function (e) {
-      var email = formLogin.mail.value.trim();
-      if (!regEmail.test(email)) {
-        mostraErrore(formLogin, "Email non valida.");
-        e.preventDefault();
-      }
-    });
+    // ...submit uguale...
+    var mailLogin = formLogin.querySelector("[name='mail']");
+    if (mailLogin) {
+      mailLogin.addEventListener("blur", function () {
+        if (!regEmail.test(this.value.trim())) {
+          mostraErrore(formLogin, "Email non valida.");
+        } else {
+          rimuoviErrore(formLogin);
+        }
+      });
+    }
   }
-  //validazione registrazione
+
+  // --- Registrazione ---
   var formRegister = document.getElementById("form-register");
   if (formRegister) {
-    formRegister.addEventListener("submit", function (e) {
-      var email = formRegister.mail.value.trim();
-      var pw = formRegister.password.value;
-      var nome = formRegister.nome.value.trim();
-      var cognome = formRegister.cognome.value.trim();
+    // ...submit uguale...
+    var mailRegister = formRegister.querySelector("[name='mail']");
+    var pwRegister = formRegister.querySelector("[name='password']");
+    var nomeRegister = formRegister.querySelector("[name='nome']");
+    var cognomeRegister = formRegister.querySelector("[name='cognome']");
 
-      if (!regEmail.test(email)) {
-        mostraErrore(formRegister, "Email non valida.");
-        e.preventDefault();
-      }
-      if (pw.length < 6) {
-        mostraErrore(formRegister, "Password troppo corta.");
-        e.preventDefault();
-      }
-      if (!regNome.test(nome)) {
-        mostraErrore(formRegister, "Il nome può contenere solo lettere.");
-        e.preventDefault();
-      }
-      if (!regNome.test(cognome)) {
-        mostraErrore(formRegister, "Il cognome può contenere solo lettere.");
-        e.preventDefault();
-      }
-    });
+    if (mailRegister) {
+      mailRegister.addEventListener("blur", function () {
+        if (!regEmail.test(this.value.trim())) {
+          mostraErrore(formRegister, "Email non valida.");
+        } else {
+          rimuoviErrore(formRegister);
+        }
+      });
+    }
+    if (pwRegister) {
+      pwRegister.addEventListener("blur", function () {
+        if (this.value.length < 6) {
+          mostraErrore(formRegister, "Password troppo corta.");
+        } else {
+          rimuoviErrore(formRegister);
+        }
+      });
+    }
+    if (nomeRegister) {
+      nomeRegister.addEventListener("blur", function () {
+        if (!regNome.test(this.value.trim())) {
+          mostraErrore(formRegister, "Il nome può contenere solo lettere.");
+        } else {
+          rimuoviErrore(formRegister);
+        }
+      });
+    }
+    if (cognomeRegister) {
+      cognomeRegister.addEventListener("blur", function () {
+        if (!regNome.test(this.value.trim())) {
+          mostraErrore(formRegister, "Il cognome può contenere solo lettere.");
+        } else {
+          rimuoviErrore(formRegister);
+        }
+      });
+    }
   }
-  // Validazione profilo
+
+  // --- Profilo ---
   var regProfilo = document.getElementById("profilo-form");
   if (regProfilo) {
-    regProfilo.addEventListener("submit", function (e) {
-      var email = regProfilo.mail.value.trim();
-      var pw = regProfilo.password.value;
-      var nome = regProfilo.nome.value.trim();
-      var cognome = regProfilo.cognome.value.trim();
+    // ...submit uguale...
+    var mailProfilo = regProfilo.querySelector("[name='mail']");
+    var pwProfilo = regProfilo.querySelector("[name='password']");
+    var nomeProfilo = regProfilo.querySelector("[name='nome']");
+    var cognomeProfilo = regProfilo.querySelector("[name='cognome']");
 
-      if (!regEmail.test(email)) {
-        mostraErrore(regProfilo, "Email non valida.");
-        e.preventDefault();
-      }
-      if (pw.length < 6) {
-        mostraErrore(regProfilo, "Password troppo corta.");
-        e.preventDefault();
-      }
-      if (!regNome.test(nome)) {
-        mostraErrore(regProfilo, "Il nome può contenere solo lettere.");
-        e.preventDefault();
-      }
-      if (!regNome.test(cognome)) {
-        mostraErrore(regProfilo, "Il cognome può contenere solo lettere.");
-        e.preventDefault();
-      }
-    });
+    if (mailProfilo) {
+      mailProfilo.addEventListener("blur", function () {
+        if (!regEmail.test(this.value.trim())) {
+          mostraErrore(regProfilo, "Email non valida.");
+        } else {
+          rimuoviErrore(regProfilo);
+        }
+      });
+    }
+    if (pwProfilo) {
+      pwProfilo.addEventListener("blur", function () {
+        if (this.value.length < 6) {
+          mostraErrore(regProfilo, "Password troppo corta. Almeno 6 caratteri");
+        } else {
+          rimuoviErrore(regProfilo);
+        }
+      });
+    }
+    if (nomeProfilo) {
+      nomeProfilo.addEventListener("blur", function () {
+        if (!regNome.test(this.value.trim())) {
+          mostraErrore(regProfilo, "Il nome può contenere solo lettere.");
+        } else {
+          rimuoviErrore(regProfilo);
+        }
+      });
+    }
+    if (cognomeProfilo) {
+      cognomeProfilo.addEventListener("blur", function () {
+        if (!regNome.test(this.value.trim())) {
+          mostraErrore(regProfilo, "Il cognome può contenere solo lettere.");
+        } else {
+          rimuoviErrore(regProfilo);
+        }
+      });
+    }
   }
 
-  // Validazione ordine
+  // --- Ordine/checkout ---
   var formOrdine = document.getElementById("form-ordine");
   if (formOrdine) {
-    formOrdine.addEventListener("submit", function (e) {
-      var cap = formOrdine.cap.value.trim();
-      var cvv = formOrdine.cvv.value.trim();
-      var carta = formOrdine.numeroCarta.value.trim();
+    // ...submit uguale...
+    var capOrdine = formOrdine.querySelector("[name='cap']");
+    var numCartaOrdine = formOrdine.querySelector("[name='numeroCarta']");
+    var cvvOrdine = formOrdine.querySelector("[name='cvv']");
 
-      if (!regCAP.test(cap)) {
-        mostraErrore(formOrdine, "CAP non valido (5 cifre numeriche).");
-        e.preventDefault();
-      }
-
-      if (!regCarta.test(carta)) {
-        mostraErrore(formOrdine, "Numero carta non valido (16 cifre numeriche).");
-        e.preventDefault();
-      }
-
-      if (!regCVV.test(cvv)) {
-        mostraErrore(formOrdine, "CVV non valido (3 o 4 cifre).");
-        e.preventDefault();
-      }
-    });
-	
-	
+    if (capOrdine) {
+      capOrdine.addEventListener("blur", function () {
+        if (!regCAP.test(this.value.trim())) {
+          mostraErrore(formOrdine, "CAP non valido (5 cifre numeriche).");
+        } else {
+          rimuoviErrore(formOrdine);
+        }
+      });
+    }
+    if (numCartaOrdine) {
+      numCartaOrdine.addEventListener("blur", function () {
+        if (!regCarta.test(this.value.trim())) {
+          mostraErrore(formOrdine, "Numero carta non valido (16 cifre numeriche).");
+        } else {
+          rimuoviErrore(formOrdine);
+        }
+      });
+    }
+    if (cvvOrdine) {
+      cvvOrdine.addEventListener("blur", function () {
+        if (!regCVV.test(this.value.trim())) {
+          mostraErrore(formOrdine, "CVV non valido (3 o 4 cifre).");
+        } else {
+          rimuoviErrore(formOrdine);
+        }
+      });
+    }
   }
-  
-  //visione password
-      const toggle = document.getElementById("togglePassword");
-      const passwordField = document.getElementById("password");
 
-      if (toggle && passwordField) {
-        toggle.addEventListener("click", function () {
-          const isHidden = passwordField.type === "password";
-          passwordField.type = isHidden ? "text" : "password";
-          toggle.textContent = isHidden ? "visibility_off" : "visibility";
-        });
-      }
-   
+  // visione password
+  const toggle = document.getElementById("togglePassword");
+  const passwordField = document.getElementById("password");
+  if (toggle && passwordField) {
+    toggle.addEventListener("click", function () {
+      const isHidden = passwordField.type === "password";
+      passwordField.type = isHidden ? "text" : "password";
+      toggle.textContent = isHidden ? "visibility_off" : "visibility";
+    });
+  }
 });
 
+// Funzione per mostrare errore (NON toccare)
 function mostraErrore(form, msg) {
   var err = form.querySelector(".errore-form");
   if (!err) {
