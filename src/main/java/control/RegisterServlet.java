@@ -19,6 +19,10 @@ import java.sql.SQLException;
 public class RegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    // Regex identiche a quelle JS
+    private static final String EMAIL_REGEX = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
+    private static final String NAME_REGEX = "^[A-Za-zÀ-ÖØ-öø-ÿ'’\\s]+$";
+
     private String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -39,12 +43,34 @@ public class RegisterServlet extends HttpServlet {
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
 
+        // Campi obbligatori
         if (nome == null || cognome == null || mail == null || password == null ||
             nome.isBlank() || cognome.isBlank() || mail.isBlank() || password.isBlank()) {
             request.setAttribute("errore", "Compila tutti i campi.");
             request.getRequestDispatcher("/common/register.jsp").forward(request, response);
             return;
         }
+
+        // Nome e cognome: solo lettere (anche accentate, apostrofo, spazio)
+        if (!nome.matches(NAME_REGEX)) {
+            request.setAttribute("errore", "Il nome può contenere solo lettere.");
+            request.getRequestDispatcher("/common/register.jsp").forward(request, response);
+            return;
+        }
+        if (!cognome.matches(NAME_REGEX)) {
+            request.setAttribute("errore", "Il cognome può contenere solo lettere.");
+            request.getRequestDispatcher("/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Email valida
+        if (!mail.matches(EMAIL_REGEX)) {
+            request.setAttribute("errore", "Email non valida.");
+            request.getRequestDispatcher("/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Password almeno 6 caratteri
         if (password.length() < 6) {
             request.setAttribute("errore", "Password troppo corta.");
             request.getRequestDispatcher("/common/register.jsp").forward(request, response);

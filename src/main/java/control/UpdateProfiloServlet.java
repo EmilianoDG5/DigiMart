@@ -9,7 +9,8 @@ import java.io.IOException;
 @WebServlet("/updateProfilo")
 public class UpdateProfiloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    private static final String EMAIL_REGEX = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
+    private static final String NAME_REGEX = "^[A-Za-zÀ-ÖØ-öø-ÿ'’\\s]+$";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         Utente utente = (session != null) ? (Utente)session.getAttribute("utente") : null;
@@ -22,14 +23,25 @@ public class UpdateProfiloServlet extends HttpServlet {
         String cognome = request.getParameter("cognome");
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
-
+        String errore = null;
         // Validazioni base
-        if (nome == null || cognome == null || mail == null ||
-            nome.trim().isEmpty() || cognome.trim().isEmpty() || mail.trim().isEmpty()) {
-            request.setAttribute("errore", "Tutti i campi obbligatori tranne la password!");
+       
+        if (mail == null || !mail.matches(EMAIL_REGEX)) {
+            errore = "Email non valida.";
+        }else if (password != null && !password.trim().isEmpty() && password.length() < 6) {
+            errore = "Password troppo corta.";
+        } else if (nome == null || !nome.matches(NAME_REGEX)) {
+            errore = "Il nome può contenere solo lettere.";
+        } else if (cognome == null || !cognome.matches(NAME_REGEX)) {
+            errore = "Il cognome può contenere solo lettere.";
+        }
+
+        if (errore != null) {
+            request.setAttribute("errore", errore);
             request.getRequestDispatcher("/common/profilo.jsp").forward(request, response);
             return;
         }
+
 
         try {
             UtenteDAO dao = new UtenteDAO();

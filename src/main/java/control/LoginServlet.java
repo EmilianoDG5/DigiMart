@@ -18,6 +18,8 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    private static final String EMAIL_REGEX = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
 
     private String hashPassword(String password) {
         try {
@@ -34,8 +36,21 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mail = request.getParameter("mail");
-        String password = request.getParameter("password");
+            String mail = request.getParameter("mail");
+            String password = request.getParameter("password");
+            String errore = null;
+
+            if (mail == null || !mail.matches(EMAIL_REGEX)) {
+                errore = "Email non valida.";
+            } else if (password == null || password.length() < 6) {
+                errore = "Password troppo corta.";
+            }
+
+            if (errore != null) {
+                request.setAttribute("errore", errore);
+                request.getRequestDispatcher("/common/login.jsp").forward(request, response);
+                return;
+            }
 
         if (mail == null || password == null || mail.isBlank() || password.isBlank()) {
             request.setAttribute("errore", "Inserisci email e password.");
@@ -61,3 +76,4 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
+

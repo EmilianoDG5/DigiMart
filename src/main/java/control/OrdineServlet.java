@@ -8,27 +8,15 @@ import model.*;
 import java.io.IOException;
 import java.util.*;
 
-import java.text.SimpleDateFormat;
 import java.sql.SQLException;
 
 @WebServlet("/ordine")
 public class OrdineServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private boolean validaCampi(String via, String cap, String citta, String numCarta, String cvv) {
-        if (via == null || cap == null || citta == null || numCarta == null || cvv == null)
-            return false;
-        if (via.trim().isEmpty() || cap.trim().isEmpty() || citta.trim().isEmpty()
-            || numCarta.trim().isEmpty() || cvv.trim().isEmpty())
-            return false;
-        if (!cap.matches("\\d{5}"))
-            return false;
-        if (!numCarta.matches("\\d{16}"))
-            return false;
-        if (!cvv.matches("\\d{3,4}"))
-            return false;
-        return true;
-    }
+    private static final String CAP_REGEX = "^\\d{5}$";
+    private static final String CARTA_REGEX = "^\\d{16}$";
+    private static final String CVV_REGEX = "^\\d{3,4}$";
 
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,8 +42,33 @@ public class OrdineServlet extends HttpServlet {
         String numeroCarta = request.getParameter("numeroCarta");
         String cvv = request.getParameter("cvv");
 
-        if (!validaCampi(via, cap, citta, numeroCarta, cvv)) {
-            request.setAttribute("errore", "Campi non validi.");
+        // 1. Via non vuota
+        if (via == null || via.trim().isEmpty()) {
+            request.setAttribute("errore", "La via non può essere vuota.");
+            request.getRequestDispatcher("/common/checkout.jsp").forward(request, response);
+            return;
+        }
+        // 2. Città non vuota
+        if (citta == null || citta.trim().isEmpty()) {
+            request.setAttribute("errore", "La città non può essere vuota.");
+            request.getRequestDispatcher("/common/checkout.jsp").forward(request, response);
+            return;
+        }
+        // 3. CAP valido
+        if (cap == null || !cap.matches(CAP_REGEX)) {
+            request.setAttribute("errore", "CAP non valido (5 cifre numeriche).");
+            request.getRequestDispatcher("/common/checkout.jsp").forward(request, response);
+            return;
+        }
+        // 4. Numero carta valido
+        if (numeroCarta == null || !numeroCarta.matches(CARTA_REGEX)) {
+            request.setAttribute("errore", "Numero carta non valido (16 cifre numeriche).");
+            request.getRequestDispatcher("/common/checkout.jsp").forward(request, response);
+            return;
+        }
+        // 5. CVV valido
+        if (cvv == null || !cvv.matches(CVV_REGEX)) {
+            request.setAttribute("errore", "CVV non valido (3 o 4 cifre).");
             request.getRequestDispatcher("/common/checkout.jsp").forward(request, response);
             return;
         }

@@ -16,15 +16,17 @@
     <div class="errore"><%= errore %></div>
   <% } %>
  <form id="form-login" action="<%= request.getContextPath() %>/login" method="post" class="form-styled">
-  <label for="email">Email</label>
+  <label>Email
   <input type="text" name="mail" id="email" required>
-  <label for="password">Password</label>
+  </label>
+  <label for="password">Password
    <div class="password-wrapper">
     <input type="password" name="password" id="password" required>
     <span id="togglePassword" class="material-symbols-outlined toggle-password" title="Mostra/Nascondi password">
       visibility
     </span>
   </div>
+  </label>
   <button type="submit" class="btn-form">Accedi</button>
 </form>
   <p class="p-register">Non hai un account? <a href="register.jsp">Registrati</a></p>

@@ -14,8 +14,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Login ---
   var formLogin = document.getElementById("form-login");
   if (formLogin) {
-    // ...submit uguale...
-    var mailLogin = formLogin.querySelector("[name='mail']");
+   
+ var mailLogin = formLogin.querySelector("[name='mail']");
+	
+ // submit
+ formLogin.addEventListener("submit", function (e) {
+   rimuoviErrore(formLogin);
+   var email = mailLogin ? mailLogin.value.trim() : "";
+   var valido = true;
+
+   if (!regEmail.test(email)) {
+     mostraErrore(formLogin, "Email non valida.");
+     valido = false;
+   }
+
+   if (!valido) e.preventDefault();
+ });
+ 
+ //live
+
     if (mailLogin) {
       mailLogin.addEventListener("blur", function () {
         if (!regEmail.test(this.value.trim())) {
@@ -30,12 +47,39 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Registrazione ---
   var formRegister = document.getElementById("form-register");
   if (formRegister) {
-    // ...submit uguale...
+   
     var mailRegister = formRegister.querySelector("[name='mail']");
     var pwRegister = formRegister.querySelector("[name='password']");
     var nomeRegister = formRegister.querySelector("[name='nome']");
     var cognomeRegister = formRegister.querySelector("[name='cognome']");
+ //submit
+ 
+ formRegister.addEventListener("submit", function (e) {
+   rimuoviErrore(formRegister);
+   var valido = true;
 
+   if (mailRegister && !regEmail.test(mailRegister.value.trim())) {
+     mostraErrore(formRegister, "Email non valida.");
+     valido = false;
+   }
+   if (pwRegister && pwRegister.value.length < 6) {
+     mostraErrore(formRegister, "Password troppo corta. Almeno 6 caratteri.");
+     valido = false;
+   }
+   if (nomeRegister && !regNome.test(nomeRegister.value.trim())) {
+     mostraErrore(formRegister, "Il nome può contenere solo lettere.");
+     valido = false;
+   }
+   if (cognomeRegister && !regNome.test(cognomeRegister.value.trim())) {
+     mostraErrore(formRegister, "Il cognome può contenere solo lettere.");
+     valido = false;
+   }
+
+   if (!valido) e.preventDefault();
+ });
+
+ 
+ //live 
     if (mailRegister) {
       mailRegister.addEventListener("blur", function () {
         if (!regEmail.test(this.value.trim())) {
@@ -48,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (pwRegister) {
       pwRegister.addEventListener("blur", function () {
         if (this.value.length < 6) {
-          mostraErrore(formRegister, "Password troppo corta.");
+          mostraErrore(formRegister, "Password troppo corta. Almeno 6 caratteri");
         } else {
           rimuoviErrore(formRegister);
         }
@@ -77,12 +121,40 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Profilo ---
   var regProfilo = document.getElementById("profilo-form");
   if (regProfilo) {
-    // ...submit uguale...
+
     var mailProfilo = regProfilo.querySelector("[name='mail']");
     var pwProfilo = regProfilo.querySelector("[name='password']");
     var nomeProfilo = regProfilo.querySelector("[name='nome']");
     var cognomeProfilo = regProfilo.querySelector("[name='cognome']");
 
+	//submit
+	
+	regProfilo.addEventListener("submit", function (e) {
+	  rimuoviErrore(regProfilo);
+	  var valido = true;
+
+	  if (mailProfilo && !regEmail.test(mailProfilo.value.trim())) {
+	    mostraErrore(regProfilo, "Email non valida.");
+	    valido = false;
+	  }
+	  if (pwProfilo && pwProfilo.value.length > 0 && pwProfilo.value.length < 6) {
+	    mostraErrore(regProfilo, "Password troppo corta. Almeno 6 caratteri o lascia vuoto.");
+	    valido = false;
+	  }
+	  if (nomeProfilo && !regNome.test(nomeProfilo.value.trim())) {
+	    mostraErrore(regProfilo, "Il nome può contenere solo lettere.");
+	    valido = false;
+	  }
+	  if (cognomeProfilo && !regNome.test(cognomeProfilo.value.trim())) {
+	    mostraErrore(regProfilo, "Il cognome può contenere solo lettere.");
+	    valido = false;
+	  }
+
+	  if (!valido) e.preventDefault();
+	});
+
+	
+	//live
     if (mailProfilo) {
       mailProfilo.addEventListener("blur", function () {
         if (!regEmail.test(this.value.trim())) {
@@ -92,14 +164,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     }
-    if (pwProfilo) {
-      pwProfilo.addEventListener("blur", function () {
-        if (this.value.length < 6) {
-          mostraErrore(regProfilo, "Password troppo corta. Almeno 6 caratteri");
-        } else {
-          rimuoviErrore(regProfilo);
-        }
-      });
+	if (pwProfilo) {
+	  pwProfilo.addEventListener("blur", function () {
+	    const val = this.value.trim();
+	    if (val.length > 0 && val.length < 6) {
+	      mostraErrore(regProfilo, "Password troppo corta. Almeno 6 caratteri o lascia vuoto.");
+	    } else {
+	      rimuoviErrore(regProfilo);
+	    }
+	  });
+	
     }
     if (nomeProfilo) {
       nomeProfilo.addEventListener("blur", function () {
@@ -124,11 +198,36 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Ordine/checkout ---
   var formOrdine = document.getElementById("form-ordine");
   if (formOrdine) {
-    // ...submit uguale...
+    
     var capOrdine = formOrdine.querySelector("[name='cap']");
     var numCartaOrdine = formOrdine.querySelector("[name='numeroCarta']");
     var cvvOrdine = formOrdine.querySelector("[name='cvv']");
 
+	//submit
+	
+	
+	formOrdine.addEventListener("submit", function (e) {
+	  rimuoviErrore(formOrdine);
+	  var valido = true;
+
+	  if (capOrdine && !regCAP.test(capOrdine.value.trim())) {
+	    mostraErrore(formOrdine, "CAP non valido (5 cifre numeriche).");
+	    valido = false;
+	  }
+	  if (numCartaOrdine && !regCarta.test(numCartaOrdine.value.trim())) {
+	    mostraErrore(formOrdine, "Numero carta non valido (16 cifre numeriche).");
+	    valido = false;
+	  }
+	  if (cvvOrdine && !regCVV.test(cvvOrdine.value.trim())) {
+	    mostraErrore(formOrdine, "CVV non valido (3 o 4 cifre).");
+	    valido = false;
+	  }
+
+	  if (!valido) e.preventDefault();
+	});
+	//live
+	
+	
     if (capOrdine) {
       capOrdine.addEventListener("blur", function () {
         if (!regCAP.test(this.value.trim())) {
