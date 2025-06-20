@@ -6,9 +6,15 @@
   List<Prodotto> prodotti = (List<Prodotto>) request.getAttribute("prodotti");
   String errore = (String) request.getAttribute("errore");
 %>
+<!DOCTYPE html>
+<html>
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<main>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+</head>
 <body>
+<main>
 <%@ include file="../header.jsp" %>
   <div class="container">
     <h2>Gestione Prodotti</h2>
@@ -57,7 +63,7 @@
   <% if (prodotti != null) {
     for (Prodotto p : prodotti) { %>
     <tr>
-      <form action="<%= request.getContextPath() %>/admin/prodotto" method="post" enctype="multipart/form-data" style="display:contents;">
+      <form action="<%= request.getContextPath() %>/admin/prodotto" method="post" enctype="multipart/form-data">
         <input type="hidden" name="azione" value="modifica">
         <input type="hidden" name="id" value="<%= p.getId() %>">
         <td>
@@ -76,23 +82,23 @@
         </td>
         <td><input type="number" name="prezzo" value="<%= p.getPrezzo() %>" min="0" step="0.01" required></td>
         <td><input type="number" name="disponibilita" value="<%= p.getDisponibilita() %>" min="0" required></td>
-        <td style="text-align:center;">
+        <td>
           <input type="checkbox" name="inEvidenza" <%= p.isInEvidenza() ? "checked" : "" %>>
         </td>
         <td>
           <input type="file" name="foto" accept="image/*">
           <input type="hidden" name="fotoVecchia" value="<%= p.getFoto() %>">
           <% if (p.getFoto() != null) { %>
-            <img src="<%= request.getContextPath() %>/images/<%= p.getFoto() %>" style="max-height:28px;">
+            <img src="<%= request.getContextPath() %>/images/<%= p.getFoto() %>">
           <% } %>
         </td>
         <td style="min-width:110px; text-align:center;">
-          <button type="submit" class="btn-admin" style="margin-bottom:6px;">Salva</button>
+          <button type="submit" class="btn-admin">Salva</button>
       </form>
-      <form action="<%= request.getContextPath() %>/admin/prodotto" method="post" style="display:inline;">
+      <form action="<%= request.getContextPath() %>/admin/prodotto" method="post">
         <input type="hidden" name="azione" value="cancella">
         <input type="hidden" name="id" value="<%= p.getId() %>">
-        <button type="submit" class="btn-admin" style="background:#e74c3c;" >Elimina</button>
+        <button type="submit" class="btn-admin-e"  >Elimina</button>
       </form>
         </td>
     </tr>
@@ -102,7 +108,6 @@
 </div>
   </div>
 </main>
-
 <%@ include file="../footer.jsp" %>
 </body>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+</html>

@@ -1,4 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+</head>
 <body>
 <%@ include file="../header.jsp" %>
 <main>
@@ -13,4 +19,4 @@
 </main>
 <%@ include file="../footer.jsp" %>
 </body>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+</html>

@@ -1,10 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
+</head>
 <body>
 <%@ include file="../header.jsp" %>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <main>
-  <div class="container small-form admin-login-container">
-    <h2 class="page-title" style="text-align:center;margin-bottom:30px;">Login Amministratore</h2>
+  <div class=" admin-login-container">
+    <h2 class="page-title">Login Amministratore</h2>
     <% String errore = (String) request.getAttribute("errore"); %>
     <% if (errore != null) { %>
       <div class="errore" style="margin-bottom:20px;"><%= errore %></div>
@@ -22,5 +28,5 @@
 </main>
 <%@ include file="../footer.jsp" %>
 </body>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
-<script src="<%= request.getContextPath() %>/scripts/validazione.js"></scrip>
+<script src="<%= request.getContextPath() %>/scripts/validazione.js"></script>
+</html>

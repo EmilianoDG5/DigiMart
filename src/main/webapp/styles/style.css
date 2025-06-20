@@ -900,7 +900,6 @@ footer {
   border-radius: 7px;
   border: 1px solid #a0d7e9;
   background: #fafdff;
-  color: #1FA1C8;
   margin-top: 5px;
   margin-bottom: 0;
   transition: border .12s;
@@ -915,7 +914,6 @@ footer {
   border-radius: 7px;
   border: 1px solid #a0d7e9;
   background: #fafdff;
-  color: #1FA1C8;
   margin-top: 5px;
   margin-bottom: 0;
   min-height: 48px;
@@ -932,6 +930,19 @@ footer {
 /* Bottoni admin uniformi */
 .btn-admin {
   background: #1FA1C8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  transition: background .15s;
+}
+
+.btn-admin-e {
+  background: #e74c3c;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -986,7 +997,6 @@ footer {
   border-radius: 7px;
   border: 1px solid #a0d7e9;
   background: #fafdff;
-  color: #1FA1C8;
   margin-top: 5px;
   margin-bottom: 0;
   transition: border .12s;
@@ -1007,7 +1017,6 @@ footer {
   border-radius: 7px;
   border: 1.5px solid #a0d7e9;
   background: #fafdff;
-  color: #1FA1C8;
   margin-top: 6px;
 }
 
@@ -1177,7 +1186,7 @@ footer {
 }
 
 @media (max-width: 520px) {
-  .admin-login-container {
+   .admin-login-container {
     padding: 17px 7px 17px 7px;
     max-width: 96vw;
   }

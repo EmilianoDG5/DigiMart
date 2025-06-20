@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import model.Prodotto;
 import model.ProdottoDAO;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 import org.json.JSONObject;
 
@@ -54,28 +55,30 @@ public class CarrelloServlet extends HttpServlet {
         }
 
         switch (azione) {
-            case "aggiungi":
-                if (idProdotto > 0)
-                    carrello.put(idProdotto, carrello.getOrDefault(idProdotto, 0) + 1);
-                break;
-            case "rimuovi":
-                if (idProdotto > 0)
-                    carrello.remove(idProdotto);
-                break;
-            case "modifica":
-                if (idProdotto > 0) {
-                    int quantita = 0;
-                    try {
-                        quantita = Integer.parseInt(request.getParameter("quantita"));
-                    } catch (Exception ex) {
-                        quantita = 1;
+        case "aggiungi":
+            if (idProdotto > 0) {
+                ProdottoDAO prodottoDAO = new ProdottoDAO();
+                try {
+                    Prodotto prodotto = prodottoDAO.getProdottoById(idProdotto);
+
+                    int disponibilita = (prodotto != null) ? prodotto.getDisponibilita() : 0;
+                    int giaInCarrello = carrello.getOrDefault(idProdotto, 0);
+
+                    if (prodotto == null) {
+                        request.setAttribute("errore", "Prodotto non trovato.");
+                    } else if (disponibilita == 0) {
+                        request.setAttribute("errore", "Prodotto esaurito.");
+                    } else if (giaInCarrello >= disponibilita) {
+                        request.setAttribute("errore", "Quantità massima raggiunta per questo prodotto.");
+                    } else {
+                        carrello.put(idProdotto, giaInCarrello + 1);
                     }
-                    if (quantita > 0)
-                        carrello.put(idProdotto, quantita);
-                    else
-                        carrello.remove(idProdotto);
+                } catch (SQLException ex) {
+                    request.setAttribute("errore", "Errore di database.");
+                    ex.printStackTrace(); // O loggalo meglio se vuoi
                 }
-                break;
+            }
+            break;
             case "svuota":
                 carrello.clear();
                 break;

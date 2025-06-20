@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Funzione per mostrare errore (NON toccare)
+// Funzione per mostrare errore
 function mostraErrore(form, msg) {
   var err = form.querySelector(".errore-form");
   if (!err) {
