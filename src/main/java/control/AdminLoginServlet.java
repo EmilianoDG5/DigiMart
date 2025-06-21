@@ -16,9 +16,7 @@ public class AdminLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("---- RICEVO LA POST DI LOGIN ADMIN ----");
-    	System.out.println("Parametro id: '" + request.getParameter("id") + "'");
-    	System.out.println("Parametro password: '" + request.getParameter("password") + "'");
+    	
 
     	String idStr = request.getParameter("id");
         String password = request.getParameter("password");
@@ -28,8 +26,7 @@ public class AdminLoginServlet extends HttpServlet {
             AmministratoreDAO dao = new AmministratoreDAO();
             Amministratore admin = dao.login(id, password);
 
-            // DEBUG: stampa in console
-            System.out.println("Login admin id=" + id + ", password=" + password);
+          
             if (admin != null) {
                 System.out.println("LOGIN ADMIN OK");
                 HttpSession session = request.getSession();

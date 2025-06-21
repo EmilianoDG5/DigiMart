@@ -9,22 +9,22 @@
 <body>
 <%@ include file="../header.jsp" %>
 <main>
-  <div class=" admin-login-container">
-    <h2 class="page-title">Login Amministratore</h2>
-    <% String errore = (String) request.getAttribute("errore"); %>
-    <% if (errore != null) { %>
-      <div class="errore" style="margin-bottom:20px;"><%= errore %></div>
-    <% } %>
-    <form action="<%= request.getContextPath() %>/admin/dologin" method="post" id="form-admin-login" class="admin-login-form">
-      <label >ID
-        <input type="number" id="id-admin" name="id" required placeholder="Inserisci ID amministratore">
-      </label>
-      <label>Password
-        <input type="password" id="pw-admin" name="password" required placeholder="Inserisci password">
-      </label>
-      <button type="submit" class="btn-admin-login">Accedi</button>
-    </form>
-  </div>
+  <div class="admin-login-container">
+  <h2 class="page-title">Login Amministratore</h2>
+  <% String errore = (String) request.getAttribute("errore"); %>
+  <% if (errore != null) { %>
+    <div class="errore" style="margin-bottom:20px;"><%= errore %></div>
+  <% } %>
+  <form action="<%= request.getContextPath() %>/admin/dologin" method="post" id="form-admin-login" class="admin-login-form">
+    <label>ID
+      <input type="number" id="id-admin" name="id" required placeholder="Inserisci ID amministratore">
+    </label>
+    <label>Password
+      <input type="password" id="pw-admin" name="password" required placeholder="Inserisci password">
+    </label>
+    <button type="submit" class="btn-admin-login">Accedi</button>
+  </form>
+</div>
 </main>
 <%@ include file="../footer.jsp" %>
 </body>

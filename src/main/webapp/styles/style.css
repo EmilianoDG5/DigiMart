@@ -1128,10 +1128,12 @@ footer {
 .admin-login-form {
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 18px;
+  align-items: stretch !important;
 }
-
 .admin-login-form label {
+   width: 100%;
+  text-align: left;
   color: #1FA1C8;
   font-weight: 600;
   font-size: 1.07em;
@@ -1143,7 +1145,8 @@ footer {
 
 .admin-login-form input[type="number"],
 .admin-login-form input[type="password"] {
-  width: 100%;
+   width: 100%;
+  box-sizing: border-box;
   padding: 11px 13px;
   border-radius: 8px;
   border: 1.5px solid #cbe4ee;
@@ -1186,17 +1189,21 @@ footer {
 }
 
 @media (max-width: 520px) {
-   .admin-login-container {
-    padding: 17px 7px 17px 7px;
-    max-width: 96vw;
+  .admin-login-container {
+    padding: 10px 3vw 15px 3vw;
+    max-width: 98vw;
+    margin: 12px auto 10px auto;
+    box-sizing: border-box;
   }
-  .admin-login-form label {
-    font-size: 1em;
+  .admin-login-form {
+    gap: 12px;
   }
   .btn-admin-login {
     font-size: 1em;
+    padding: 12px 0;
   }
 }
+
 /* =========== GRIGLIA PRODOTTI =========== */
 /* Responsive */
 @media (max-width: 1100px) {

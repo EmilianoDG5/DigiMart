@@ -18,9 +18,9 @@
   <% } %>
  <form id="form-login" action="<%= request.getContextPath() %>/login" method="post" class="form-styled">
   <label>Email
-  <input type="text" name="mail" id="email" required>
+  <input type="email" name="mail"  required>
   </label>
-  <label for="password">Password
+  <label >Password
    <div class="password-wrapper">
     <input type="password" name="password" id="password" required>
     <span id="togglePassword" class="material-symbols-outlined toggle-password" title="Mostra/Nascondi password">
