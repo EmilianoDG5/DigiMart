@@ -300,7 +300,7 @@ margin-top:10px;
   margin-right: 14px;
   background: none;
   border: none;
-  color: white; /* <-- colore visibile sul blu */
+  color: white; 
   font-size: 36px;
 }
 
@@ -357,11 +357,16 @@ margin-top:10px;
     min-width: 50px;  /* Per evitare che il logo venga schiacciato */
   }
       .hamburger {
-   height: 36px;
-   margin-top:5px;
+   margin-top:7px;
   }
 }
+@media (max-width: 210px){
+	
+  .logo-img {
+    display:none;
+  }
 
+}
 /* =========== HOME =========== */
 
 .slogan-banner {
@@ -953,7 +958,7 @@ footer {
   margin-bottom: 3px;
   transition: background .15s;
 }
-.btn-admin:hover {
+.btn-admin-e:hover {
   background: #146484;
 }
 .btn-admin[style*="background:#e74c3c;"] {
@@ -1048,7 +1053,7 @@ footer {
 }
 
 .admin-form button[type="submit"] {
-  background: linear-gradient(90deg, #1FA1C8 70%, #31b6dd 100%);
+  background: #1FA1C8;
   color: #fff;
   border: none;
   border-radius: 11px;
@@ -1066,7 +1071,7 @@ footer {
   letter-spacing: 0.04em;
 }
 .admin-form button[type="submit"]:hover {
-  background: linear-gradient(90deg, #146484 60%, #1FA1C8 100%);
+  background:#146484;
   color: #fff;
   box-shadow: 0 3px 16px #1fa1c834;
 }
@@ -1166,7 +1171,7 @@ footer {
 }
 
 .btn-admin-login {
-  background: linear-gradient(90deg, #1FA1C8 70%, #31b6dd 100%);
+  background: #1FA1C8;
   color: #fff;
   border: none;
   border-radius: 11px;
@@ -1183,7 +1188,7 @@ footer {
 }
 
 .btn-admin-login:hover {
-  background: linear-gradient(90deg, #146484 60%, #1FA1C8 100%);
+  background: #146484;
   color: #fff;
   box-shadow: 0 4px 18px #1fa1c838;
 }

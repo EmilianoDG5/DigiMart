@@ -41,7 +41,7 @@
         <li class="user-dropdown">
           <a href="javascript:void(0);" class="user-link">
             <span class="material-symbols-outlined">admin_panel_settings</span> Amministratore
-            <span class="material-symbols-outlined" style="font-size:15px;">expand_more</span>
+            <span class="material-symbols-outlined">expand_more</span>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -66,7 +66,7 @@
         <li class="user-dropdown">
           <a href="javascript:void(0);" class="user-link">
             <span class="material-symbols-outlined">person</span> <%= utente.getNome() %>
-            <span class="material-symbols-outlined" style="font-size:15px;">expand_more</span>
+            <span class="material-symbols-outlined">expand_more</span>
           </a>
           <ul class="dropdown-menu">
             <li>
