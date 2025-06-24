@@ -28,13 +28,11 @@ public class AdminLoginServlet extends HttpServlet {
 
           
             if (admin != null) {
-                System.out.println("LOGIN ADMIN OK");
                 HttpSession session = request.getSession();
                 session.setAttribute("admin", admin);
                 session.setAttribute("token", System.currentTimeMillis() + "-admin-" + admin.getId());
                 response.sendRedirect(request.getContextPath() + "/admin/dashboard.jsp");
             } else {
-                System.out.println("LOGIN ADMIN FALLITO");
                 request.setAttribute("errore", "ID o password errati.");
                 request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
             }

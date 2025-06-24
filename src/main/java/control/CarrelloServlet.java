@@ -78,10 +78,44 @@ public class CarrelloServlet extends HttpServlet {
                     ex.printStackTrace(); // O loggalo meglio se vuoi
                 }
             }
+       
             break;
             case "svuota":
                 carrello.clear();
                 break;
+            case "rimuovi":
+                if (idProdotto > 0) {
+                    carrello.remove(idProdotto);
+                }
+                break;
+            case "modifica":
+                if (idProdotto > 0) {
+                    String quantitaStr = request.getParameter("quantita");
+                    int quantita = 1;
+                    try {
+                        quantita = Integer.parseInt(quantitaStr);
+                    } catch (Exception e) {
+                        quantita = 1;
+                    }
+                    ProdottoDAO prodottoDAO = new ProdottoDAO();
+                    try {
+                        Prodotto prodotto = prodottoDAO.getProdottoById(idProdotto);
+                        int disponibilita = (prodotto != null) ? prodotto.getDisponibilita() : 0;
+                        if (prodotto == null) {
+                            request.setAttribute("errore", "Prodotto non trovato.");
+                        } else if (quantita <= 0) {
+                            carrello.remove(idProdotto);
+                        } else if (quantita > disponibilita) {
+                            request.setAttribute("errore", "Quantità non disponibile.");
+                        } else {
+                            carrello.put(idProdotto, quantita);
+                        }
+                    } catch (Exception e) {
+                        request.setAttribute("errore", "Errore di database.");
+                    }
+                }
+                break;
+
         }
         session.setAttribute("carrello", carrello);
 

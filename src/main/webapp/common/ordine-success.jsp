@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<Title>SUCCESSO</Title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

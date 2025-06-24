@@ -738,7 +738,6 @@ footer {
   border-radius: 7px;
   border: 1px solid #a0d7e9;
   background: #f6fbfd;
-  color: #1FA1C8;
 }
 
 
@@ -787,7 +786,6 @@ footer {
   border: 1px solid #c2e5f3;
   padding: 5px 6px;
   background: #fafdff;
-  color: #1FA1C8;
   box-sizing: border-box;
 }
 .table-prodotti-admin textarea.nome-area,
@@ -803,7 +801,6 @@ footer {
   border-radius: 7px;
   border: 1px solid #a0d7e9;
   background: #fafdff;
-  color: #1FA1C8;
   resize: vertical;
   box-sizing: border-box;
 }
@@ -818,7 +815,6 @@ footer {
   border: 1px solid #a0d7e9;
   padding: 5px 7px;
   background: #fafdff;
-  color: #1FA1C8;
   box-sizing: border-box;
 }
 
@@ -829,7 +825,6 @@ footer {
   border-radius: 6px;
   padding: 2px 2px;
   background: #f4fbfd;
-  color: #1487b6;
 }
 
 .table-prodotti-admin td img {

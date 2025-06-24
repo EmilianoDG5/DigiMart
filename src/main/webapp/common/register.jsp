@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<Title>REGISTRAZIONE</Title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
@@ -28,17 +29,17 @@
 
   <form id="form-register" action="<%= request.getContextPath() %>/register" method="post" class="form-styled">
     <label>Nome
-      <input type="text" name="nome" required>
+      <input type="text" name="nome" placeholder="Nome" required>
     </label>  
     <label>Cognome
-      <input type="text" name="cognome" required>
+      <input type="text" name="cognome" placeholder="Cognome" required>
     </label>
     <label>Email
-      <input type="email" name="mail" required>
+      <input type="email" name="mail" placeholder="Email" required>
     </label>
   <label>Password
   <div class="password-wrapper">
-    <input type="password" name="password" id="password" required>
+    <input type="password" name="password" id="password"  placeholder="Password" required>
     <span id="togglePassword" class="material-symbols-outlined toggle-password" title="Mostra/Nascondi password">
       visibility
     </span>
@@ -46,7 +47,7 @@
 </label>
     <button type="submit" class="btn-form">Registrati</button>
   </form>
-  <p class="p-register">Hai già un account? <a href="login.jsp">Login</a></p>
+  <p class="p-register">Hai già un account? <a href="<%= request.getContextPath() %>/common/login.jsp">Login</a></p>
 </div>
 </main>
 <%@ include file="../footer.jsp" %>

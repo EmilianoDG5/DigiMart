@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<Title>LOGIN</Title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/style.css">
@@ -18,11 +19,11 @@
   <% } %>
  <form id="form-login" action="<%= request.getContextPath() %>/login" method="post" class="form-styled">
   <label>Email
-  <input type="email" name="mail"  required>
+  <input type="email" name="mail" placeholder="Inserisci email"  required>
   </label>
   <label >Password
    <div class="password-wrapper">
-    <input type="password" name="password" id="password" required>
+    <input type="password" name="password" id="password"placeholder="Inserisci password" required>
     <span id="togglePassword" class="material-symbols-outlined toggle-password" title="Mostra/Nascondi password">
       visibility
     </span>
