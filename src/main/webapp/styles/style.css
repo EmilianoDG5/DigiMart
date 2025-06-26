@@ -1973,6 +1973,15 @@ margin-top:5;
   margin-bottom: 12px;
   display: block;
 }
+.cart-product-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: inherit;
+  cursor: pointer;
+}
+.cart-product-link:visited {
+  color: inherit;
+}
 
 @media (max-width: 500px) {
   .product-detail-box,

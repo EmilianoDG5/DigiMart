@@ -28,8 +28,9 @@ function aggiornaCarrello() {
 		  html += `<tr>
 		    <td data-label="Prodotto">
 		      ${p.foto ? `<img src="${contextPath}/images/${p.foto}" alt="${p.nome}" class="cart-img">` : ''}
-		      ${p.nome}
+		      <a href="${contextPath}/dettaglioprodotto?id=${p.id}" class="cart-product-link">${p.nome}</a>
 		    </td>
+
 		    <td data-label="Quantità">
 		      <input type="number" min="1" max="${p.disponibilita}" value="${p.quantita}" class="qty-input"
 		        onchange="modificaQuantita(${p.id}, this.value)">
