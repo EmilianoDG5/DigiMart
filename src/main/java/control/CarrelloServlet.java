@@ -31,7 +31,7 @@ public class CarrelloServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Map<Integer, Integer> carrello = getCarrello(session);
 
-        // Gestione robusta azione mancante
+    
         if (azione == null || azione.isEmpty()) {
             String requestedWith = request.getHeader("X-Requested-With");
             if ("XMLHttpRequest".equals(requestedWith)) {
@@ -75,7 +75,7 @@ public class CarrelloServlet extends HttpServlet {
                     }
                 } catch (SQLException ex) {
                     request.setAttribute("errore", "Errore di database.");
-                    ex.printStackTrace(); // O loggalo meglio se vuoi
+                    ex.printStackTrace(); 
                 }
             }
        

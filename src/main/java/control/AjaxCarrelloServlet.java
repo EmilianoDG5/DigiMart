@@ -16,8 +16,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 /**
- * Servlet AJAX per carrello: ritorna JSON con dettagli.
- */
+ * Servlet AJAX */
 @WebServlet("/ajax-carrello")
 public class AjaxCarrelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

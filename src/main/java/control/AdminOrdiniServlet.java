@@ -20,7 +20,7 @@ public class AdminOrdiniServlet extends HttpServlet {
             throws ServletException, IOException {
         String dataDaStr = request.getParameter("dataDa");
         String dataAStr = request.getParameter("dataA");
-        String nomeCliente = request.getParameter("nomeCliente"); // Cambiato qui
+        String nomeCliente = request.getParameter("nomeCliente"); 
         Date dataDa = null, dataA = null;
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
