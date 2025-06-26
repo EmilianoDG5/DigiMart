@@ -21,7 +21,7 @@
   String errore = (String)request.getAttribute("errore");
 %>
 <main>
-  <div class="container small-form" style="max-width:430px;">
+  <div class="form-container">
     <h2>Profilo utente</h2>
     <% if (successo != null) { %>
       <div class="successo"><%= successo %></div>
@@ -46,7 +46,7 @@
 	      visibility
 	    </span>
 	  </div>
-      <button type="submit" class="btn-acquista" style="margin-top:18px;">Aggiorna dati</button>
+      <button type="submit" class="btn-acquista">Aggiorna dati</button>
     </form>
   </div>
 </main>

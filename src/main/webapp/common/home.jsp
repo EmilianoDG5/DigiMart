@@ -34,9 +34,8 @@
     <div class="product-grid">
       <% if (prodotti != null && !prodotti.isEmpty()) {
         for (Prodotto p : prodotti) { %>
-        <!-- Card interamente cliccabile (escluso bottone) -->
         <a href="<%= request.getContextPath() %>/dettaglioprodotto?id=<%= p.getId() %>" class="product-link" >
-          <div class="product-card" tabindex="0" style="cursor:pointer; position:relative;">
+          <div class="product-card" tabindex="0">
             <img src="<%= request.getContextPath() %>/images/<%= p.getFoto() != null ? p.getFoto() : "placeholder.png" %>" alt="img" class="product-img">
             <div class="product-info">
               <h3><%= p.getNome() %></h3>
@@ -61,7 +60,6 @@
         <div>Nessun prodotto trovato.</div>
       <% } %>
     </div>
-    <div id="msg-carrello" style="display:none; margin-top:20px;" class="success"></div>
   </div>
 </main>
 

@@ -57,9 +57,6 @@
       <% } } else { %>
         <div>Nessun prodotto trovato.</div>
       <% } %>
-
-
-    <div id="msg-carrello"  class="success"></div>
   </div>
   
 </main>

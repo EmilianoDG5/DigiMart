@@ -19,7 +19,7 @@
     <form id="svuota-carrello-form">
       <button type="submit">Svuota carrello</button>
     </form>
-    <div id="checkout-div" style="text-align:right; margin-top:18px; display:none;">
+    <div id="checkout-div">
       <form action="<%= request.getContextPath() %>/common/checkout.jsp" method="get">
         <button id="checkout-btn" type="submit" class="btn-checkout">Effettua ordine</button>
       </form>

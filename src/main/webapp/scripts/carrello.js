@@ -27,11 +27,11 @@ function aggiornaCarrello() {
 		  totale += p.subtotale;
 		  html += `<tr>
 		    <td data-label="Prodotto">
-		      ${p.foto ? `<img src="${contextPath}/images/${p.foto}" alt="${p.nome}" class="product-img" style="max-height:44px;margin-right:9px;vertical-align:middle;">` : ''}
+		      ${p.foto ? `<img src="${contextPath}/images/${p.foto}" alt="${p.nome}" class="cart-img">` : ''}
 		      ${p.nome}
 		    </td>
 		    <td data-label="Quantità">
-		      <input type="number" min="1" max="${p.disponibilita}" value="${p.quantita}" style="width:50px"
+		      <input type="number" min="1" max="${p.disponibilita}" value="${p.quantita}" class="qty-input"
 		        onchange="modificaQuantita(${p.id}, this.value)">
 		    </td>
 		    <td data-label="Prezzo">€ ${(p.subtotale).toFixed(2)}</td>
@@ -42,7 +42,7 @@ function aggiornaCarrello() {
 		});
 		html += `<tr class="totale-row">
 		  <td colspan="2"></td>
-		  <td colspan="2" style="text-align:right; font-weight:bold; background:#e8f8fa;">
+		  <td colspan="2">
 		    Totale carrello: € ${totale.toFixed(2)}
 		  </td>
 		</tr>

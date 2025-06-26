@@ -14,7 +14,7 @@
   <h2 class="page-title">Login Amministratore</h2>
   <% String errore = (String) request.getAttribute("errore"); %>
   <% if (errore != null) { %>
-    <div class="errore" style="margin-bottom:20px;"><%= errore %></div>
+    <div class="errore"><%= errore %></div>
   <% } %>
   <form action="<%= request.getContextPath() %>/admin/dologin" method="post" id="form-admin-login" class="admin-login-form">
     <label>ID

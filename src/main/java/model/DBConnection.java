@@ -19,7 +19,7 @@ public class DBConnection {
      */
     public static Connection getConnection() throws SQLException {
         try {
-            // Obbliga il caricamento del driver JDBC
+         
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Driver JDBC MySQL non trovato!", e);

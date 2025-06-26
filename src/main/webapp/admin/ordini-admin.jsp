@@ -20,7 +20,7 @@
     <form method="get" class="admin-form" action="<%= request.getContextPath() %>/admin/ordini">
   <label>Da: <input type="date" name="dataDa"></label>
   <label>A: <input type="date" name="dataA"></label>
-  <label>Nome cliente: <input type="text" name="nomeCliente"></label> <!-- Cambiato qui -->
+  <label>Nome cliente: <input type="text" name="nomeCliente"></label> 
   <button type="submit" class="btn-filtra" >Filtra</button>
 </form>
 

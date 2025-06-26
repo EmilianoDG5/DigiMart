@@ -32,7 +32,7 @@ public class AdminOrdiniServlet extends HttpServlet {
 
         OrdineDAO dao = new OrdineDAO();
         try {
-            // Cambia parametro passato alla DAO
+          
             request.setAttribute("ordini", dao.filtraOrdini(dataDa, dataA, nomeCliente));
         } catch (SQLException e) {
             request.setAttribute("errore", "Errore caricamento ordini: " + e.getMessage());

@@ -14,7 +14,7 @@
 <body>
 <%@ include file="../header.jsp" %>
 <main>
-  <div class="container" style="padding: 40px 35px 38px 35px;">
+  <div class="container">
     <% if (p != null) { %>
       <div class="product-detail-box">
         <div class="product-detail-imgbox">
